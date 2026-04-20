@@ -1,9 +1,22 @@
-#!/usr/bin/env bash
-set -e
-echo "Installing dependencies..."
-npm install
-if [ ! -f .env ]; then
-  cp .env.example .env
-  echo ".env created from .env.example"
-fi
-echo "Done. Run: npm start"
+{
+  "name": "gfa-first-timers",
+  "version": "1.0.0",
+  "description": "God's Family Assembly First Timers Form",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "qrcode": "^1.5.3",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
