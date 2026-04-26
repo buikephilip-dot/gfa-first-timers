@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>God's Family Assembly | First Timers Form</title>
+<style>
+:root {
+--dark-blue: #0f2d6b;
+--mid-blue: #1d4ed8;
+--light-blue: #60a5fa;
+--sky: #dbeafe;
+--grey: #6b7280;
+--grey-light: #f3f4f6;
+--text: #111827;
+--white: #ffffff;
+--success: #166534;
+--warning: #92400e;
+--danger: #b91c1c;
+--border: #d1d5db;
+--shadow: 0 10px 30px rgba(0,0,0,.08);
+--radius: 18px;
+}
+* { box-sizing: border-box; }
+body {
+margin: 0;
+font-family: Inter, Segoe UI, Arial, sans-serif;
+color: var(--text);
+background: linear-gradient(180deg, #eff6ff 0%, #ffffff 45%, #f8fafc 100%);
+min-height: 100vh;
+}
+.wrap {
+width: min(100%, 920px);
+margin: 0 auto;
+padding: 20px;
+}
+.hero {
+background: linear-gradient(135deg, var(--dark-blue), var(--mid-blue), var(--light-blue));
+color: white;
+padding: 28px;
+border-radius: 24px;
+box-shadow: var(--shadow);
+margin-top: 14px;
+}
+.hero h1 {
+margin: 0 0 10px;
+font-size: clamp(1.8rem, 4vw, 3rem);
+line-height: 1.05;
+}
+.hero p {
+margin: 0;
+line-height: 1.6;
+max-width: 700px;
+opacity: .96;
+}
+.card {
+background: var(--white);
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+padding: 24px;
+margin-top: 18px;
+border: 1px solid rgba(209, 213, 219, .65);
+}
+.grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 16px;
+}
+@media (max-width: 720px) {
+.grid { grid-template-columns: 1fr; }
+.hero { padding: 22px; }
+.card { padding: 18px; }
+}
+label {
+display: block;
+font-size: .95rem;
+font-weight: 700;
+margin-bottom: 8px;
+}
+.hint {
+color: var(--grey);
+font-size: .92rem;
+line-height: 1.5;
+margin-top: 2px;
+}
+input, select, textarea {
+width: 100%;
+padding: 14px 14px;
+border: 1px solid var(--border);
+border-radius: 12px;
+font-size: 1rem;
+background: #fff;
+transition: .2s border-color, .2s box-shadow;
+}
+input:focus, select:focus, textarea:focus {
+outline: none;
+border-color: var(--mid-blue);
+box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+}
+textarea { min-height: 110px; resize: vertical; }
+.span-2 { grid-column: span 2; }
+@media (max-width: 720px) {
+.span-2 { grid-column: span 1; }
+}
+.row {
+display: flex;
+gap: 12px;
+flex-wrap: wrap;
+}
+.pill {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+padding: 12px 14px;
+background: #f8fafc;
+border: 1px solid var(--border);
+border-radius: 999px;
+cursor: pointer;
+user-select: none;
+}
+.pill input { width: auto; margin: 0; }
+.check-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0,1fr));
+gap: 10px;
+}
+@media (max-width: 640px) {
+.check-grid { grid-template-columns: 1fr; }
+}
+button, .btn {
+border: none;
+border-radius: 14px;
+padding: 14px 18px;
+font-size: 1rem;
+font-weight: 700;
+cursor: pointer;
+text-decoration: none;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+transition: .2s transform, .2s opacity;
+}
+button:hover, .btn:hover { transform: translateY(-1px); opacity: .98; }
+.primary {
+background: linear-gradient(135deg, var(--dark-blue), var(--mid-blue));
+color: white;
+}
+.secondary {
+background: var(--grey-light);
+color: var(--text);
+}
+.actions {
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+margin-top: 10px;
+}
+.meta {
+display: flex;
+gap: 12px;
+flex-wrap: wrap;
+margin-top: 12px;
+color: var(--grey);
+font-size: .95rem;
+}
+.hidden { display: none !important; }
+.required::after { content: " *"; color: var(--danger); }
+.msg {
+padding: 14px 16px;
+border-radius: 12px;
+margin-bottom: 18px;
+font-weight: 600;
+display: none;
+}
+.msg.show { display: block; }
+.msg.error { background: #fef2f2; color: var(--danger); border: 1px solid #fecaca; }
+.msg.success { background: #f0fdf4; color: var(--success); border: 1px solid #bbf7d0; }
+.center { text-align: center; }
+.tiny { font-size: .85rem; color: var(--grey); }
+.topbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 12px;
+margin-bottom: 8px;
+}
+.logo {
+font-weight: 900;
+letter-spacing: .02em;
+}
+.feature-list {
+display:grid;
+grid-template-columns: repeat(3, minmax(0,1fr));
+gap: 12px;
+margin-top: 16px;
+}
+@media (max-width: 720px) {
+.feature-list { grid-template-columns: 1fr; }
+}
+.feature {
+background: rgba(255,255,255,.12);
+border: 1px solid rgba(255,255,255,.14);
+border-radius: 16px;
+padding: 14px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="topbar">
+<div class="logo">God's Family Assembly</div>
+</div>
+<section class="hero" id="welcomeSection">
+<h1>Welcome to God's Family Assembly</h1>
+<p>We're glad to have you worship with us. If this is your first time with us, please take a moment to fill this form so we can connect with you properly.</p>
+</section>
+<section class="card" id="formCard">
+<div id="message" class="msg"></div>
+<form id="firstTimerForm">
+<div class="grid">
+<div>
+<label class="required" for="full_name">Full name</label>
+<input id="full_name" name="full_name" required />
+</div>
+<div>
+<label class="required" for="phone">Phone number</label>
+<input id="phone" name="phone" required inputmode="tel" placeholder="+234..." />
+</div>
+<div>
+<label for="email">Email address</label>
+<input id="email" name="email" type="email" />
+</div>
+<div>
+<label for="address">Home address</label>
+<input id="address" name="address" />
+</div>
+<div>
+<label for="gender">Gender</label>
+<select id="gender" name="gender">
+<option value="">Select</option>
+<option>Male</option>
+<option>Female</option>
+</select>
+</div>
+<div>
+<label for="age_range">Age range</label>
+<select id="age_range" name="age_range">
+<option value="">Select</option>
+<option>Under 18</option>
+<option>18 - 24</option>
+<option>25 - 34</option>
+<option>35 - 44</option>
+<option>45 - 54</option>
+<option>55+</option>
+</select>
+</div>
+<div>
+<label for="marital_status">Marital status</label>
+<select id="marital_status" name="marital_status">
+<option value="">Select</option>
+<option>Single</option>
+<option>Married</option>
+<option>Widowed</option>
+<option>Separated</option>
+</select>
+</div>
+<div>
+<label for="occupation">Occupation</label>
+<input id="occupation" name="occupation" />
+</div>
+<div>
+<label class="required" for="how_you_heard">How did you hear about us?</label>
+<select id="how_you_heard" name="how_you_heard" required>
+<option value="">Select</option>
+<option>Friend or Family</option>
+<option>Social Media</option>
+<option>Flyer or Banner</option>
+<option>WhatsApp Invite</option>
+<option>Walk In</option>
+<option>Online Search</option>
+<option>Other</option>
+</select>
+</div>
+<div>
+<label class="required" for="is_first_time">Is this your first time visiting?</label>
+<select id="is_first_time" name="is_first_time" required>
+<option value="">Select</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+</div>
+<div>
+<label class="required" for="want_contact">Would you like someone from the church to contact you?</label>
+<select id="want_contact" name="want_contact" required>
+<option value="">Select</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+</div>
+<div id="contactMethodWrap" class="hidden">
+<label class="required" for="contact_method">Preferred method of contact</label>
+<select id="contact_method" name="contact_method">
+<option value="">Select</option>
+<option>Call</option>
+<option>WhatsApp</option>
+</select>
+</div>
+<div class="span-2">
+<label for="prayer_request">Prayer request</label>
+<textarea id="prayer_request" name="prayer_request"></textarea>
+</div>
+<div>
+<label class="required" for="want_department">Would you like to join a department?</label>
+<select id="want_department" name="want_department" required>
+<option value="">Select</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+</div>
+<div class="span-2 hidden" id="departmentsWrap">
+<label class="required">Department interests</label>
+<div class="check-grid">
+<label class="pill"><input type="checkbox" name="departments" value="Media" /> Media</label>
+<label class="pill"><input type="checkbox" name="departments" value="Music" /> Music</label>
+<label class="pill"><input type="checkbox" name="departments" value="Ushering" /> Ushering</label>
+<label class="pill"><input type="checkbox" name="departments" value="Protocol" /> Protocol</label>
+<label class="pill"><input type="checkbox" name="departments" value="Greeters" /> Greeters</label>
+<label class="pill"><input type="checkbox" name="departments" value="Welfare" /> Welfare</label>
+<label class="pill"><input type="checkbox" name="departments" value="Drama" /> Drama</label>
+<label class="pill"><input type="checkbox" name="departments" value="Creative Arts" /> Creative Arts</label>
+</div>
+</div>
+<div>
+<label class="required" for="service">Service attended</label>
+<select id="service" name="service" required>
+<option value="">Select</option>
+<option>Sunday 7:00 AM</option>
+<option>Sunday 9:00 AM</option>
+<option>Midweek Service</option>
+<option>Special Program</option>
+</select>
+</div>
+<div>
+<label class="required" for="date_of_visit">Date of visit</label>
+<input id="date_of_visit" name="date_of_visit" type="date" required />
+</div>
+</div>
+<div class="actions" style="margin-top:20px;">
+<button class="primary" type="submit" id="submitBtn">Submit Form</button>
+<button class="secondary" type="button" id="clearBtn">Clear Draft</button>
+</div>
+<p class="tiny">Your progress is saved automatically on this device until you submit or clear it.</p>
+</form>
+</section>
+<section class="card hidden center" id="thankYouCard">
+<h2>Thank You for Worshipping With Us</h2>
+<p>We are honored to have you with us at God's Family Assembly. Someone from our team may reach out to you soon. We look forward to seeing you again.</p>
+<div class="actions" style="justify-content:center;">
+<a class="btn primary" href="https://wa.me/2347015256058" target="_blank" rel="noopener">Chat with us on WhatsApp</a>
+<a class="btn secondary" href="tel:+2347015256058">Call us</a>
+<a class="btn secondary" href="https://facebook.com" target="_blank" rel="noopener">Follow us</a>
+</div>
+<div class="actions" style="justify-content:center;">
+<button class="secondary" id="newResponseBtn" type="button">Submit Another Response</button>
+</div>
+</section>
+</div>
+<script>
+const form = document.getElementById('firstTimerForm');
+const message = document.getElementById('message');
+const contactMethodWrap = document.getElementById('contactMethodWrap');
+const departmentsWrap = document.getElementById('departmentsWrap');
+const wantContact = document.getElementById('want_contact');
+const wantDepartment = document.getElementById('want_department');
+const clearBtn = document.getElementById('clearBtn');
+const submitBtn = document.getElementById('submitBtn');
+const thankYouCard = document.getElementById('thankYouCard');
+const formCard = document.getElementById('formCard');
+const newResponseBtn = document.getElementById('newResponseBtn');
+const STORAGE_KEY = 'gfa_first_timer_draft_v1';
+
+document.getElementById('date_of_visit').value = new Date().toISOString().slice(0,10);
+
+function showMessage(text, kind='error') {
+  message.className = 'msg show ' + kind;
+  message.textContent = text;
+}
+
+function toggleConditionalFields() {
+  const wantsContact = wantContact.value === 'Yes';
+  contactMethodWrap.classList.toggle('hidden', !wantsContact);
+  document.getElementById('contact_method').required = wantsContact;
+  const wantsDepartment = wantDepartment.value === 'Yes';
+  departmentsWrap.classList.toggle('hidden', !wantsDepartment);
+}
+
+wantContact.addEventListener('change', toggleConditionalFields);
+wantDepartment.addEventListener('change', toggleConditionalFields);
+
+function serializeForm() {
+  const fd = new FormData(form);
+  const obj = {};
+  for (const [key, value] of fd.entries()) {
+    if (key === 'departments') continue;
+    obj[key] = value;
+  }
+  obj.departments = [...document.querySelectorAll('input[name="departments"]:checked')].map(x => x.value);
+  return obj;
+}
+
+function populateForm(data) {
+  if (!data || typeof data !== 'object') return;
+  for (const [k, v] of Object.entries(data)) {
+    const el = form.elements[k];
+    if (!el || k === 'departments') continue;
+    el.value = v ?? '';
+  }
+  if (Array.isArray(data.departments)) {
+    document.querySelectorAll('input[name="departments"]').forEach(ch => {
+      ch.checked = data.departments.includes(ch.value);
+    });
+  }
+  toggleConditionalFields();
+}
+
+function saveDraft() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(serializeForm()));
+}
+
+function loadDraft() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+  try { populateForm(JSON.parse(raw)); } catch (e) {}
+}
+
+function clearDraft() {
+  localStorage.removeItem(STORAGE_KEY);
+  form.reset();
+  document.getElementById('date_of_visit').value = new Date().toISOString().slice(0,10);
+  toggleConditionalFields();
+  document.querySelectorAll('input[name="departments"]').forEach(ch => ch.checked = false);
+  message.className = 'msg';
+  message.textContent = '';
+}
+
+form.addEventListener('input', saveDraft);
+form.addEventListener('change', saveDraft);
+clearBtn.addEventListener('click', clearDraft);
+
+newResponseBtn.addEventListener('click', () => {
+  thankYouCard.classList.add('hidden');
+  formCard.classList.remove('hidden');
+  clearDraft();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+function validate(data) {
+  const phone = (data.phone || '').replace(/\s+/g, '');
+  if (!/^\+?[0-9]{10,15}$/.test(phone)) {
+    return 'Please enter a valid phone number.';
+  }
+  if (data.want_contact === 'Yes' && !data.contact_method) {
+    return 'Please choose a preferred contact method.';
+  }
+  if (data.want_department === 'Yes' && (!data.departments || data.departments.length === 0)) {
+    return 'Please select at least one department.';
+  }
+  return '';
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = serializeForm();
+  const error = validate(data);
+  if (error) { showMessage(error, 'error'); return; }
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+  try {
+    const res = await fetch('/api/submit-first-timer', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error || 'Submission failed.');
+    localStorage.removeItem(STORAGE_KEY);
+    showMessage('Submitted successfully.', 'success');
+    formCard.classList.add('hidden');
+    thankYouCard.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch (err) {
+    showMessage(err.message || 'Something went wrong.', 'error');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Form';
+  }
+});
+
+loadDraft();
+toggleConditionalFields();
+</script>
+</body>
+</html>
